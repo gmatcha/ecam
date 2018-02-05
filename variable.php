@@ -203,12 +203,13 @@
 
 							//here we have to show the internal value of inputs, not the multiplied by the unit multiplier
 							var multiplier=Units.multiplier(match);
-							if(multiplier!=1)
+							
+							if((multiplier!=1) && (match !== (`wsa_pmp_flow` || `wsd_pmp_flow`)))   // patch m^3/s vs L/s unit - special case for pmp_flow calc  
 							{
 								var magnitude=Info[match].magnitude;
 								for(var unit in Units[magnitude])
 								{
-									if(Units[magnitude][unit]===1)    // believe it meant to be matching multiplier //no: it should be 1, because we want the original unit
+									if(Units[magnitude][unit]===1)    
 									{
 										currentUnit=unit;
 										break;
