@@ -26,14 +26,14 @@
             // share sum function //
             g_update_total : function() {
                 var ghg_sum = this.g_nrw_water_vol_opps_em +
-                                        this.g_end_user_consumption_opps_em +
-                              this.g_water_reuse_opps_em +
-                                            this.g_dw_energy_consumption_opps_em +
-                                            this.g_ww_infl_opps_em +
-                                            this.g_ww_grid_energy_consumption_opps_em +
-                                            this.g_ww_slu_opps_em +
-                                            this.g_ww_water_reuse_opps_em +
-                                            this.g_ww_biogas_opps_em;
+                                  this.g_end_user_consumption_opps_em +
+                                  this.g_water_reuse_opps_em +
+                                  this.g_dw_energy_consumption_opps_em +
+                                  this.g_ww_infl_opps_em +
+                                  this.g_ww_grid_energy_consumption_opps_em +
+                                  this.g_ww_slu_opps_em +
+                                  this.g_ww_water_reuse_opps_em +
+                                  this.g_ww_biogas_opps_em;
 
                 var total = Global.General.TotalGHG() - ghg_sum;
                 var percent = ((Global.General.TotalGHG() - total) / Global.General.TotalGHG()) * 100;
@@ -44,16 +44,16 @@
             },
 
             tbl_opps : {
-                "header" : { "title" : "Opportunities", "col1" : "kg CO<sub>2</sub>e reduction <br> per 1% change <br> of current value</th>"},
+                "header" : { "title" : '<?php write('#opps_title')?>', "col1" : "kg CO<sub>2</sub>e reduction <br> per 1% change <br> of current value</th>"},
                 "body" : [
                     { "type" : "ws",
                         "title" : "Non-revenue water volume",
                         "ghg_em" : function() {
                             var wsd_kpi_ghg_s = Global.Water.Distribution.wsd_KPI_GHG() / Global.Water.Distribution.wsd_vol_dist;
-                          var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
-                          var wsa_kpi_ghg_s = Global.Water.Abstraction.wsa_KPI_GHG() / Global.Water.Abstraction.wsa_vol_conv;
-                          var kpi_ghg_s = wsd_kpi_ghg_s + wst_kpi_ghg_s + wsa_kpi_ghg_s;
-                            opps.g_nrw_water_vol_opps = (Global.Water.Distribution.wsd_vol_dist - Global.Water.Distribution.wsd_bill_con) * kpi_ghg_s;
+                            var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
+                            var wsa_kpi_ghg_s = Global.Water.Abstraction.wsa_KPI_GHG() / Global.Water.Abstraction.wsa_vol_conv;
+                            var kpi_ghg_s = wsd_kpi_ghg_s + wst_kpi_ghg_s + wsa_kpi_ghg_s;
+                              opps.g_nrw_water_vol_opps = (Global.Water.Distribution.wsd_vol_dist - Global.Water.Distribution.wsd_bill_con) * kpi_ghg_s;
                             var emissions = 0.01 * opps.g_nrw_water_vol_opps;
                             return emissions;
                         }
@@ -467,11 +467,11 @@
     <!--linear--><?php include'linear.php'?>
 <!--/includes-->
 <div style="textAlign: center">
-    <h1>Opportunities to reduce GHG emissions</h1>
+    <h1><?php write('#opps_title')?></h1>
 
     <!-- including link to catalogue of solutions -->
     <a href="http://www.iwa-network.org/water-climate-energy-solutions/public/"
-        style="font-weight: bold; color: grey;">[Catalogue of Solutions]
+        style="font-weight: bold; color: grey;">[<?php write('#opps_cos')?>]
     </a>
 </div>
 
@@ -479,7 +479,7 @@
 
     <!--total ghg indicator-->
     <p id=container_TotalGHG>
-        System wide GHG emissions:
+        <?php write('#opps_sys_ghg_em')?>
         <span id=TotalGHG>Loading...</span>
         kg CO<sub>2</sub>e
     </p>
@@ -489,7 +489,7 @@
 
         <!-- opps card -->
         <div class="card" id="opps_table">
-            <?php cardMenu("Opportunities") ?>
+            <?php cardMenu("Opportunities")?>
             <table>
                 <thead>
                     <tr>
