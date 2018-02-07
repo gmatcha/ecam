@@ -44,22 +44,23 @@
             },
 
             tbl_opps : {
-                "header" : { "title" : '<?php write('#opps_title')?>', "col1" : "kg CO<sub>2</sub>e reduction <br> per 1% change <br> of current value</th>"},
+
+                "header" : { "title" : 'Oportunidades', "col1" : "Reducción de kg CO<sub>2</sub>e por el cambio de 1% del los valores corrientes</th>" },
                 "body" : [
                     { "type" : "ws",
-                        "title" : "Non-revenue water volume",
-                        "ghg_em" : function() {
-                            var wsd_kpi_ghg_s = Global.Water.Distribution.wsd_KPI_GHG() / Global.Water.Distribution.wsd_vol_dist;
-                            var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
-                            var wsa_kpi_ghg_s = Global.Water.Abstraction.wsa_KPI_GHG() / Global.Water.Abstraction.wsa_vol_conv;
-                            var kpi_ghg_s = wsd_kpi_ghg_s + wst_kpi_ghg_s + wsa_kpi_ghg_s;
-                              opps.g_nrw_water_vol_opps = (Global.Water.Distribution.wsd_vol_dist - Global.Water.Distribution.wsd_bill_con) * kpi_ghg_s;
-                            var emissions = 0.01 * opps.g_nrw_water_vol_opps;
-                            return emissions;
-                        }
+                      "title" : "Agua no facturada",
+                      "ghg_em" : function() {
+                          var wsd_kpi_ghg_s = Global.Water.Distribution.wsd_KPI_GHG() / Global.Water.Distribution.wsd_vol_dist;
+                          var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
+                          var wsa_kpi_ghg_s = Global.Water.Abstraction.wsa_KPI_GHG() / Global.Water.Abstraction.wsa_vol_conv;
+                          var kpi_ghg_s = wsd_kpi_ghg_s + wst_kpi_ghg_s + wsa_kpi_ghg_s;
+                            opps.g_nrw_water_vol_opps = (Global.Water.Distribution.wsd_vol_dist - Global.Water.Distribution.wsd_bill_con) * kpi_ghg_s;
+                          var emissions = 0.01 * opps.g_nrw_water_vol_opps;
+                          return emissions;
+                      }
                     },
                     { "type" : "ws",
-                        "title" : "End-user consumption",
+                        "title" : "Consumo de usuarios",
                         "ghg_em" : function() {
                             var wsd_kpi_ghg_s = Global.Water.Distribution.wsd_KPI_GHG() / Global.Water.Distribution.wsd_vol_dist;
                           var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
@@ -71,7 +72,7 @@
                         }
                     },
                     { "type" : "ws",
-                        "title" : "*Water reuse (to replace potable water for non-potable purposes)",
+                        "title" : "*Reusó del agua (para reemplazar agua potable para usos no potables)",
                         "ghg_em" : function() {
                             var wsd_kpi_ghg_s = Global.Water.Distribution.wsd_KPI_GHG() / Global.Water.Distribution.wsd_vol_dist;
                             var wst_kpi_ghg_s = Global.Water.Treatment.wst_KPI_GHG() / Global.Water.Treatment.wst_vol_trea;
@@ -83,7 +84,7 @@
                         }
                     },
                     { "type" : "ws",
-                        "title" : "Drinking water grid energy consumption",
+                        "title" : "Consumo de energía importada por el suministro de agua potable",
                         "ghg_em" : function() {
                             opps.g_dw_energy_consumption_opps = Global.Water.ws_nrg_cons() * Global.General.conv_kwh_co2;
                             var emissions = 0.01 * opps.g_dw_energy_consumption_opps;
@@ -91,7 +92,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Infiltration/Inflow",
+                        "title" : "Infiltración / Entrada de agua (a la alcantarilla)",
                         "ghg_em" : function() {
                             var wwc_kpi_ghg_s = (Global.Waste.Collection.wwc_vol_conv == (null || 0)) ? 0 : (Global.Waste.Collection.wwc_KPI_GHG() / Global.Waste.Collection.wwc_vol_conv);
                             var wwt_kpi_ghg_s = (Global.Waste.Treatment.wwt_vol_trea == (null || 0))  ? 0 : (Global.Waste.Treatment.wwt_KPI_GHG() / Global.Waste.Treatment.wwt_vol_trea);
@@ -103,7 +104,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Wastewater grid energy consumption",
+                        "title" : "Consumo de energía importada para la gestión de aguas residuales",
                         "ghg_em" : function() {
                             opps.g_ww_grid_energy_consumption_opps = Global.Waste.ww_nrg_cons() * Global.General.conv_kwh_co2;
                             var emissions = 0.01 * opps.g_ww_grid_energy_consumption_opps;
@@ -111,7 +112,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Sludge disposed",
+                        "title" : "Sludge disposeito de lodos",
                         "ghg_em" : function() {
                             var wwt_kpi_ghg_sto_co2eq_s   = (Global.Waste.Treatment.wwt_mass_slu_sto   == (null || 0)) ? 0 : (Global.Waste.Treatment.wwt_KPI_ghg_sto_co2eq() / Global.Waste.Treatment.wwt_mass_slu_sto);
                             var wwt_kpi_ghg_comp_co2eq_s  = (Global.Waste.Treatment.wwt_mass_slu_comp  == (null || 0)) ? 0 : (Global.Waste.Treatment.wwt_KPI_ghg_comp_co2eq() / Global.Waste.Treatment.wwt_mass_slu_comp);
@@ -131,7 +132,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Water Reuse (to avoid discharge to water body)",
+                        "title" : "Reusó del agua (para evitar descarga a cuerpos de agua receptores)",
                         "ghg_em" : function() {
                             opps.g_ww_water_reuse_opps = Global.Waste.Discharge.wwd_vol_disc *
                                                                            (Global.Waste.Discharge.wwd_KPI_GHG_tre_n2o() / Global.Waste.Discharge.wwd_vol_disc);
@@ -140,7 +141,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Biogas Production / Recovery",
+                        "title" : "Producción / Recuperación de Biogas",
                         "ghg_em" : function() {
                             var biog_kpi_ghg = (Global.Waste.Treatment.c_wwt_biog_fla() == (null || 0)) ? 0 : (Global.Waste.Treatment.wwt_KPI_GHG_biog() / Global.Waste.Treatment.c_wwt_biog_fla());
                             opps.g_ww_biogas_opps = Global.Waste.Treatment.c_wwt_biog_fla() * biog_kpi_ghg;
@@ -152,16 +153,15 @@
             },
 
       tbl_stage : {
-                "header" : { "title" : "Stage", "col1" : "Current Total GHG Emission (kg CO<sub>2</sub>e)"},
+                "header" : { "title" : "Etapa", "col1" : "Total corriente de emisiones GEI (kg CO<sub>2</sub>e)"},
                 "body" : [
-                    { "type" : "wsa", "title" : "Drinking Water Abstraction", "ghg_em" : function() { return Global.Water.Abstraction.wsa_KPI_GHG(); } },
-                    { "type" : "wst", "title" : "Drinking Water Treatment", "ghg_em" : function() { return Global.Water.Treatment.wst_KPI_GHG(); } },
-                    { "type" : "wsd", "title" : "Drinking Water Distribution", "ghg_em" : function() { return Global.Water.Distribution.wsd_KPI_GHG(); } },
-                    { "type" : "wwc", "title" : "Wastewater Collection", "ghg_em" : function() { return Global.Waste.Collection.wwc_KPI_GHG(); } },
-                    { "type" : "wwt", "title" : "Wastewater Treatment", "ghg_em" : function() { return Global.Waste.Treatment.wwt_KPI_GHG(); } },
-                    { "type" : "wwd", "title" : "Wastewater Discharge/Treatment", "ghg_em" : function() { return Global.Waste.Discharge.wwd_KPI_GHG(); } }
+                    { "type" : "wsa", "title" : "Captación de agua potable", "ghg_em" : function() { return Global.Water.Abstraction.wsa_KPI_GHG(); } },
+                    { "type" : "wst", "title" : "Tratamiento de agua potable", "ghg_em" : function() { return Global.Water.Treatment.wst_KPI_GHG(); } },
+                    { "type" : "wwc", "title" : "Distribución de agua potable", "ghg_em" : function() { return Global.Waste.Collection.wwc_KPI_GHG(); } },
+                    { "type" : "wwt", "title" : "Recolección de aguas residuales", "ghg_em" : function() { return Global.Waste.Treatment.wwt_KPI_GHG(); } },
+                    { "type" : "wwd", "title" : "Tratamiento de aguas residuales", "ghg_em" : function() { return Global.Waste.Discharge.wwd_KPI_GHG(); } }
                 ],
-                "footer" : { "title" : "Total System-Wide", "ghg_total" : function() {
+                "footer" : { "title" : "Total (ciclo completo)", "ghg_total" : function() {
                     return Global.Water.Abstraction.wsa_KPI_GHG() +
                            Global.Water.Treatment.wst_KPI_GHG() +
                                  Global.Water.Distribution.wsd_KPI_GHG() +
@@ -173,15 +173,15 @@
 
             tbl_measure : {
                 "header" : {
-                    "title" : "Measure",
-                    "col1" : "Desired Percent Change",
-                    "col2" : "GHG Emission Reduction (kg CO<sub>2</sub>e)",
-                    "col3" : "New Total System-Wide GHG Emission (kg CO<sub>2</sub>e)",
-                    "col4" : "Percent GHG Reduction"
+                    "title" : "Medidas",
+                    "col1" : "Cambio de porcentaje deseado",
+                    "col2" : "Reducción de emisiones de GEI (kg CO<sub>2</sub>e)",
+                    "col3" : "Nueva emisión total de GEI en el ciclo completo (kg CO<sub>2</sub>e)",
+                    "col4" : "Porcentaje de reducción de GEI"
                 },
                 "body" : [
                     { "type" : "ws",
-                        "title" : "Non-revenue water reduction",
+                        "title" : "Reducción de agua no facturada",
                         "dper" : function() { return Global.Opps.g_nrw_water_vol_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_nrw_water_vol_opps_em = ((percent / 100) * opps.g_nrw_water_vol_opps);
@@ -195,7 +195,7 @@
                         }
                     },
                     { "type" : "ws",
-                        "title" : "End-user consumption reduction",
+                        "title" : "Reducción del consumo de usarios",
                         "dper" : function() { return Global.Opps.g_end_user_consumption_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_end_user_consumption_opps_em = ((percent / 100) * opps.g_end_user_consumption_opps);
@@ -209,7 +209,7 @@
                         }
                     },
                     { "type" : "ws",
-                        "title" : "*Water reuse (to replace potable water for non-potable purposes)",
+                        "title" : "*Reusó del agua (para reemplazar agua potable para usos no potables)",
                         "dper" : function() { return Global.Opps.g_water_reuse_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_water_reuse_opps_em = ((percent / 100) * opps.g_water_reuse_opps);
@@ -223,7 +223,7 @@
                         }
                     },
                     { "type" : "ws",
-                        "title" : "Drinking water grid energy consumption reduction",
+                        "title" : "Reducción del consumo de energía importada para el suministro de agua potable",
                         "dper" : function() { return Global.Opps.g_dw_energy_consumption_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_dw_energy_consumption_opps_em = ((percent / 100) * opps.g_dw_energy_consumption_opps);
@@ -237,7 +237,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Infiltration/Inflow reduction",
+                        "title" : "Reducción de la Infiltración / Entrada de agua (a la alcantarilla)",
                         "dper" : function() { return Global.Opps.g_ww_infl_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_ww_infl_opps_em = ((percent / 100) * opps.g_ww_infl_opps);
@@ -251,7 +251,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Wastewater grid energy consumption reduction",
+                        "title" : "Reducción del consumo de energía importada para la gestión de aguas residuales",
                         "dper" : function() { return Global.Opps.g_ww_grid_energy_consumption_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_ww_grid_energy_consumption_opps_em = ((percent / 100) * opps.g_ww_grid_energy_consumption_opps);
@@ -265,7 +265,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Sludge disposal reduction*",
+                        "title" : "Reducción del depósito de lodos*",
                         "dper" : function() { return Global.Opps.g_ww_slu_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_ww_slu_opps_em = ((percent / 100) * opps.g_ww_slu_opps);
@@ -279,7 +279,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Water Reuse (to avoid discharge to water body)",
+                        "title" : "Reusó del agua (para evitar descarga a cuerpos de agua receptores)",
                         "dper" : function() { return Global.Opps.g_ww_water_reuse_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_ww_water_reuse_opps_em = ((percent / 100) * opps.g_ww_water_reuse_opps);
@@ -293,7 +293,7 @@
                         }
                     },
                     { "type" : "ww",
-                        "title" : "Biogas Production / Recovery (MUST ENTER cubic meters of additional biogas production & recovery desired, not precent)",
+                        "title" : "Producción / Recuperación de Biogás (Deben entrar los metros cúbicos de producción adicional del biogás y la recuperación deseada, no precent)",
                         "dper" : function() { return Global.Opps.g_ww_biogas_dper; },
                         "ghg_em" : function(percent,i) {
                             opps.g_ww_biogas_opps_em = (Global.Waste.Treatment.wwt_nrg_cons - (percent * 2)) * Global.General.conv_kwh_co2;
@@ -308,11 +308,11 @@
                     }
                 ],
                 "footer" : {
-                    "title" : "Measure Total",
+                    "title" : "Total de todas medidas",
                     "ghg_em" : function() {
                         opps.g_update_total();
                     },
-                    "note" : "*assumes 1% water resued reduced end-user consumption by 1%"
+                    "note" : "*asume que el 1% de agua reusada reduce 1% del consumo de agua potable por usuarios"
                 }
             }
         };
@@ -493,7 +493,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="background:#d7bfaf">Opportunities</th>
+                        <th style="background:#d7bfaf"><?php write('#Opportunities')?></th>
                         <th id="opps-col-1" style="text-align: center; color: black; background: #f5ecce;">Loading....</th>
                     </tr>
                 </thead>
@@ -514,7 +514,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="background:#d7bfaf">Stage</th>
+                        <th style="background:#d7bfaf"><?php write('#Stage')?></th>
                         <th id="stage-col-1" style="text-align: center; color: black; background: #f5ecce;">Loading....</th>
                     </tr>
                 </thead>
@@ -546,7 +546,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="background:#d7bfaf" class="head-title">Measures</th>
+                        <th style="background:#d7bfaf" class="head-title"><?php write('#Measures')?></th>
                         <th class="head-col" id="measure-col-1" style="text-align: center; color: black; background: #f5ecce;">Loading....</th>
                         <th class="head-col" id="measure-col-2" style="text-align: center; color: black; background: #f5ecce;">Loading....</th>
                         <th class="head-col" id="measure-col-3" style="text-align: center; color: black; background: #f5ecce;">Loading....</th>
